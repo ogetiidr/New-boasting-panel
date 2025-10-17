@@ -1,0 +1,221 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Instagram Platform - Dark Anon Boasting Panel</title>
+<style>
+  :root{--bg:#000;--neon:#0f0;--panel:#0b0b0b;--accent:#00ff88;--muted:rgba(15,255,15,0.6)}
+  html,body{height:100%;margin:0;background:var(--bg);color:var(--neon);font-family:'Courier New',monospace}
+  body::before{content:"";position:fixed;inset:0;background:url('https://i.ibb.co/XSrWJ7v/matrix-bg.jpg') repeat;opacity:.08;z-index:-1;background-size:cover;animation:bgMove 30s linear infinite}
+  @keyframes bgMove{0%{background-position:0 0}100%{background-position:1200px 1200px}}
+  .wrap{max-width:980px;margin:28px auto;padding:18px}
+  .brand{font-weight:800;color:var(--accent);text-shadow:0 0 12px var(--neon);font-size:20px;margin-bottom:12px;text-align:center}
+  .card{background:var(--panel);border-radius:12px;padding:18px;border:1px solid rgba(15,255,15,0.06);box-shadow:0 0 20px rgba(0,255,0,0.03);margin-bottom:16px}
+  label{display:block;text-align:left;color:var(--neon);margin-top:8px}
+  select,input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(15,255,15,0.12);background:#000;color:var(--neon);font-size:15px}
+  .price-row{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding:12px;border-radius:8px;background:rgba(15,255,15,0.02)}
+  .btn{width:100%;padding:12px;border-radius:10px;border:none;cursor:pointer;font-weight:900;background:linear-gradient(90deg,#0f0,#6affb0);color:#000;box-shadow:0 0 26px rgba(0,255,0,0.12);margin-top:12px;font-size:16px}
+  .note{color:var(--muted);font-size:13px;margin-top:8px}
+  .small{font-size:13px;color:var(--muted)}
+  a.neon { color: var(--neon); text-decoration: none; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">💻 Dark Anon Boasting Panel -- Instagram Platform</div>
+
+    <div class="card">
+      <h3 style="margin:0;color:var(--accent)">About</h3>
+      <p class="note">Choose a service, enter quantity, link and your Safaricom phone. Tap <strong>Make Payment</strong> -- a secure Paystack inline popup will appear (mobile money option). After server-side verification the page will open WhatsApp with your order details. Payment must succeed for WhatsApp to open.</p>
+    </div>
+
+    <div class="card" id="orderCard" aria-live="polite">
+      <label for="service">Service</label>
+      <select id="service"></select>
+
+      <label for="quantity">Quantity</label>
+      <input id="quantity" type="number" min="1" placeholder="Enter quantity" />
+
+      <label for="link">Post / Account Link</label>
+      <input id="link" type="text" placeholder="Enter Instagram post or account link" />
+
+      <label for="phone">Safaricom Phone Number</label>
+      <input id="phone" type="tel" placeholder="e.g. 07XXXXXXXX or +2547XXXXXXXX" />
+
+      <div class="price-row">
+        <div>Total (KSh)</div>
+        <div id="total">KSh 0.00</div>
+      </div>
+
+      <button id="payBtn" class="btn">💸 Make Payment (Safaricom)</button>
+      <p id="status" class="note"></p>
+    </div>
+
+    <div class="card">
+      <p class="small">Quick: Join our group <a href="https://chat.whatsapp.com/CjoDXOsAQVc9dRytsvPNEA?mode=ems_copy_t" target="_blank" class="neon">📱 Join Our WhatsApp Group</a> • Channel <a href="https://whatsapp.com/channel/0029Vb1aC844o7qUgewgYS0P" target="_blank" class="neon">📢 Follow Our Channel</a></p>
+      <p class="small">Support: <a href="https://wa.me/254728626642" target="_blank" class="neon">0728626642</a></p>
+    </div>
+
+    <footer style="text-align:center;color:var(--muted)">© 2025 Dark Anon Boasting Panel</footer>
+  </div>
+
+  <!-- Paystack inline -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+
+<script>
+/* ====== CONFIG ======
+ If your backend is hosted at a different URL, set API_BASE to it (no trailing slash).
+ Example:
+   const API_BASE = 'https://api.myserver.com'
+ If backend is same origin as this page, leave API_BASE = ''.
+*/
+const API_BASE = ''; // <--- set if backend domain differs
+const PAYSTACK_PUBLIC = 'pk_live_51259da5cfece83092952afaf6afc43aafb17599'; // public key
+const WHATSAPP_NUMBER = '254728626642'; // your WhatsApp number (no +)
+
+/* ===== SERVICES (70) ===== */
+const SERVICES = [
+"INSTAGRAM BEST services","INSTAGRAM views/video/tv/reel","INSTAGRAM Auto reel views","INSTAGRAM repost",
+"INSTAGRAM post views [photo]","INSTAGRAM AUTO POST VIEWS","INSTAGRAM song trending",
+"INSTAGRAM followers /best speed /superfast","INSTAGRAM followers best speed","INSTAGRAM followers /non drop",
+"INSTAGRAM #ALL flag Types WORKING","INSTAGRAM #REFILL","INSTAGRAM #NO REFILL","INSTAGRAM #CHEAPEST",
+"INSTAGRAM NON drop likes","INSTAGRAM realistic likes","INSTAGRAM likes/100%real","INSTAGRAM likes [best speed]",
+"INSTAGRAM likes [cheapest]","INSTAGRAM non drop likes (alt)","INSTAGRAM realistic likes (alt)",
+"INSTAGRAM likes 100% real (alt)","INSTAGRAM Auto likes","INSTAGRAM likes [cheap + very slow]","INSTAGRAM instagram shares",
+"INSTAGRAM instagram AUTO SHARES","INSTAGRAM Instagram saves","INSTAGRAM Instagram AUTO SAVES","INSTAGRAM Instagram highlights",
+"INSTAGRAM #impression +REACH","INSTAGRAM #AUTO REACH +impression","INSTAGRAM #comments package 100% real",
+"INSTAGRAM #random comments","INSTAGRAM #custom comments","INSTAGRAM #emoji comments","INSTAGRAM #comments -powered by Ai",
+"INSTAGRAM #comments [packages] (fixed)","INSTAGRAM #comments-Always Working","INSTAGRAM #comments [100% real accounts]",
+"INSTAGRAM comments split-OLD posts","INSTAGRAM comments from verified [top accounts]","INSTAGRAM comments real influencers /EXCLUSIVE",
+"INSTAGRAM Comments by Topics","INSTAGRAM power comments","INSTAGRAM comments -country Targeted","INSTAGRAM story views",
+"INSTAGRAM story poll voting","INSTAGRAM story views comments","INSTAGRAM story shares|clicks|discover","INSTAGRAM story REPLY",
+"INSTAGRAM STORY SWIPE UP","INSTAGRAM STORY MENTIONS|REAL INFLUENCERS","INSTAGRAM MENTIONS","INSTAGRAM live video |views",
+"INSTAGRAM live video likes |views","INSTAGRAM female services","INSTAGRAM engagement packages","INSTAGRAM channel members",
+"INSTAGRAM channel members -new","INSTAGRAM channel member","INSTAGRAM AI GROWTH PACKAGES","INSTAGRAM INSTAGRAM 50K -1 MILLION FOLLOWERS|PACKAGES",
+"INSTAGRAM INFLUencer services","INSTAGRAM direct message service - DM","INSTAGRAM MASS DM +PUSH NOTIFICATIONS",
+"INSTAGRAM DIRECT MESSAGE SERVICE","INSTAGRAM DATA SCRAPER","INSTAGRAM NFT services","INSTAGRAM BLUE TICK-VERIFICAION SERVICE",
+"INSTAGRAM OTHER (misc)"
+];
+
+const sel = document.getElementById('service');
+SERVICES.forEach((s,i)=> { const o=document.createElement('option'); o.value=(i+1); o.textContent = s; sel.appendChild(o); });
+
+const qtyInput = document.getElementById('quantity');
+const totalEl = document.getElementById('total');
+const phoneInput = document.getElementById('phone');
+const linkInput = document.getElementById('link');
+const statusEl = document.getElementById('status');
+const payBtn = document.getElementById('payBtn');
+
+/* update total by asking server (server authoritative) */
+async function updateTotal(){
+  const serviceId = sel.value;
+  const qty = Number(qtyInput.value) || 0;
+  if (!serviceId || qty <= 0) { totalEl.textContent = 'KSh 0.00'; return 0; }
+  try {
+    const r = await fetch((API_BASE||'') + '/api/calc', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ serviceId, quantity: qty })
+    });
+    const j = await r.json();
+    if (j && j.status && j.data && typeof j.data.amount !== 'undefined') {
+      totalEl.textContent = 'KSh ' + Number(j.data.amount).toFixed(2);
+      return Number(j.data.amount);
+    }
+  } catch (e) { console.error(e); }
+  totalEl.textContent = 'KSh 0.00';
+  return 0;
+}
+
+sel.addEventListener('change', updateTotal);
+qtyInput.addEventListener('input', updateTotal);
+
+/* normalize phone */
+function normalizePhone(raw){
+  raw = (raw||'').replace(/\s+/g,'').replace(/\-/g,'');
+  if (!raw) return '';
+  if (raw.startsWith('+')) raw = raw.slice(1);
+  if (raw.startsWith('0')) raw = '254' + raw.slice(1);
+  if (raw.startsWith('7')) raw = '254' + raw;
+  return raw;
+}
+
+/* Start payment -> initialize on server -> open Paystack inline -> verify -> on success open WhatsApp */
+async function startPayment(){
+  statusEl.textContent = '';
+  const serviceId = sel.value;
+  const qty = Number(qtyInput.value) || 0;
+  const link = linkInput.value.trim();
+  const phoneRaw = phoneInput.value.trim();
+  const phone = normalizePhone(phoneRaw);
+  if (!serviceId || qty <= 0 || !link || !phone) { alert('Please fill service, quantity, link and phone number'); return; }
+
+  statusEl.textContent = 'Preparing payment...';
+
+  try {
+    const r = await fetch((API_BASE||'') + '/api/initialize', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ serviceId, quantity: qty, postLink: link, phone })
+    });
+    const j = await r.json();
+    if (!j || !j.status || !j.data) {
+      statusEl.textContent = 'Could not initialize payment. Try again.';
+      console.error('init fail', j);
+      return;
+    }
+
+    const { reference, amount } = j.data; // amount in KSh
+    statusEl.textContent = 'Opening secure payment prompt...';
+
+    const handler = PaystackPop.setup({
+      key: PAYSTACK_PUBLIC,
+      email: j.data.email || 'customer@darkanon.local',
+      amount: Math.round(amount * 100),
+      currency: 'KES',
+      ref: reference,
+      metadata: {
+        custom_fields: [
+          { display_name: "ServiceId", variable_name: "serviceId", value: String(serviceId) },
+          { display_name: "Quantity", variable_name: "quantity", value: String(qty) },
+          { display_name: "Phone", variable_name: "phone", value: String(phone) },
+          { display_name: "PostLink", variable_name: "postLink", value: String(link) }
+        ]
+      },
+      callback: async function(response){
+        statusEl.textContent = 'Payment processed. Verifying...';
+        try {
+          const verify = await fetch((API_BASE||'') + '/api/verify/' + encodeURIComponent(response.reference));
+          const v = await verify.json();
+          if (v && v.status && v.data && (v.data.status === 'success' || (v.data.gateway_response && v.data.gateway_response.toLowerCase().includes('success')))) {
+            const amtKsh = (v.data.amount || (amount*100)) / 100;
+            const svcText = sel.options[sel.selectedIndex].text;
+            const msg = `✅ PAYMENT RECEIVED\nPlatform: Instagram\nService: ${svcText}\nQuantity: ${qty}\nAmount: KSh ${amtKsh.toFixed(2)}\nLink: ${link}\nPhone: ${phone}\nReference: ${response.reference}\n\nPlease approve and process.`;
+            window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
+            statusEl.textContent = 'Payment verified -- WhatsApp opened.';
+          } else {
+            statusEl.textContent = 'Payment verification failed. Contact support.';
+            console.error('verification', v);
+          }
+        } catch (err) {
+          console.error(err);
+          statusEl.textContent = 'Verification error. Contact support.';
+        }
+      },
+      onClose: function(){
+        statusEl.textContent = 'Payment window closed.';
+      }
+    });
+    handler.openIframe();
+  } catch (err) {
+    console.error(err);
+    statusEl.textContent = 'Error initiating payment.';
+  }
+}
+
+document.getElementById('payBtn').addEventListener('click', startPayment);
+</script>
+</body>
+</html>
