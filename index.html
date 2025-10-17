@@ -1,0 +1,175 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Anon Boasting Panel</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background: #000;
+      color: #0f0;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Glowing Matrix Background */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.ibb.co/XSrWJ7v/matrix-bg.jpg') repeat;
+      opacity: 0.1;
+      z-index: -1;
+      animation: bgMove 30s linear infinite;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
+    }
+
+    header {
+      padding: 25px;
+      background: #000;
+      border-bottom: 2px solid #0f0;
+      box-shadow: 0 0 25px #0f0;
+    }
+
+    h1 {
+      color: #00ff66;
+      font-size: 30px;
+      text-shadow: 0 0 15px #00ff66, 0 0 30px #0f0;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      color: #bafdb4;
+    }
+
+    /* Service Buttons */
+    .services {
+      margin: 40px auto;
+      width: 90%;
+      max-width: 950px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+    }
+
+    .service {
+      background: #111;
+      border: 1px solid #0f0;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 0 15px #0f0;
+      transition: 0.3s;
+    }
+
+    .service:hover {
+      background: #030;
+      transform: translateY(-4px);
+      box-shadow: 0 0 25px #00ff66;
+    }
+
+    .service a {
+      color: #00ff88;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+      text-shadow: 0 0 10px #0f0;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: #00ff66;
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      box-shadow: 0 0 15px #00ff66;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #0f0;
+      box-shadow: 0 0 30px #00ff66;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 25px;
+      background: #010;
+      border-top: 2px solid #0f0;
+      box-shadow: 0 0 25px #0f0;
+    }
+
+    .support {
+      color: #8effa3;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    /* Glowing Animation */
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00ff66; }
+      to { text-shadow: 0 0 25px #00ff66; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>💻 Dark Anon Boasting Panel</h1>
+    <p>Welcome to the Dark Side. Choose any category of service below 👇</p>
+  </header>
+
+  <div class="services">
+    <div class="service"><a href="instagram.html">Instagram</a></div>
+    <div class="service"><a href="threads.html">Threads</a></div>
+    <div class="service"><a href="youtube.html">YouTube</a></div>
+    <div class="service"><a href="facebook.html">Facebook</a></div>
+    <div class="service"><a href="tiktok.html">TikTok</a></div>
+    <div class="service"><a href="telegram.html">Telegram</a></div>
+    <div class="service"><a href="twitter.html">Twitter</a></div>
+    <div class="service"><a href="whatsapp.html">WhatsApp</a></div>
+    <div class="service"><a href="spotify.html">Spotify</a></div>
+    <div class="service"><a href="linkedin.html">LinkedIn</a></div>
+    <div class="service"><a href="audiomack.html">Audio Mack</a></div>
+    <div class="service"><a href="boomplay.html">Boomplay</a></div>
+    <div class="service"><a href="soundcloud.html">SoundCloud</a></div>
+    <div class="service"><a href="pinterest.html">Pinterest</a></div>
+    <div class="service"><a href="twitch.html">Twitch</a></div>
+    <div class="service"><a href="tumblr.html">Tumblr</a></div>
+    <div class="service"><a href="snackvideo.html">SnackVideo</a></div>
+    <div class="service"><a href="discord.html">Discord</a></div>
+    <div class="service"><a href="snapchat.html">Snapchat</a></div>
+    <div class="service"><a href="likee.html">Likee</a></div>
+    <div class="service"><a href="bluesky.html">Bluesky</a></div>
+    <div class="service"><a href="kick.html">Kick</a></div>
+    <div class="service"><a href="yandex.html">Yandex</a></div>
+    <div class="service"><a href="lemon8.html">Lemon8</a></div>
+    <div class="service"><a href="website.html">Website</a></div>
+    <div class="service"><a href="google.html">Google</a></div>
+    <div class="service"><a href="apple.html">Apple</a></div>
+    <div class="service"><a href="binance.html">Binance Square</a></div>
+    <div class="service"><a href="reddit.html">Reddit</a></div>
+  </div>
+
+  <footer>
+    <a class="btn" href="https://chat.whatsapp.com/CjoDXOsAQVc9dRytsvPNEA?mode=ems_copy_t" target="_blank">📱 Join Our WhatsApp Group</a><br>
+    <a class="btn" href="https://whatsapp.com/channel/0029Vb1aC844o7qUgewgYS0P" target="_blank">📢 Follow Our Channel</a><br>
+    <a class="btn" href="https://wa.me/254728626642" target="_blank">💬 Contact Support via WhatsApp</a>
+    <div class="support">© 2025 Dark Anon Boasting Panel | All Rights Reserved</div>
+  </footer>
+</body>
+</html>
