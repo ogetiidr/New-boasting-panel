@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Instagram Portal</title>
+<style>
+  :root{
+    --bg:#03060a;
+    --panel:#071014;
+    --neon:#00d45a; /* greenish */
+    --muted: rgba(0,212,90,0.15);
+    --text:#cfeee0;
+    --accent:#8fffb0;
+  }
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,#02060a,#041212);color:var(--text);font-family: "Courier New", monospace;}
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background: url('https://i.ibb.co/XSrWJ7v/matrix-bg.jpg') repeat;
+    opacity:0.06; z-index:-1; background-size:cover; animation:bgMove 30s linear infinite;
+  }
+  @keyframes bgMove{0%{background-position:0 0}100%{background-position:1200px 1200px}}
+  .wrap{max-width:980px;margin:26px auto;padding:18px}
+  header{background:linear-gradient(90deg,#05232a,#0a2f2a);padding:18px;border-radius:10px;text-align:center;border:1px solid rgba(0,212,90,0.06)}
+  header h1{margin:0;color:var(--neon);text-shadow:0 0 8px rgba(0,212,90,0.12);font-size:26px;letter-spacing:1px}
+  .card{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));border-radius:12px;padding:18px;margin-top:18px;border:1px solid rgba(0,212,90,0.04)}
+  .lead{color:var(--accent);text-align:center;margin-bottom:12px;font-size:14px}
+  label{display:block;font-weight:700;margin-top:12px;color:var(--neon);font-size:14px}
+  select,input{width:100%;padding:10px;margin-top:8px;border-radius:8px;border:1px solid rgba(0,212,90,0.07);background:#031617;color:var(--text);font-size:15px;box-sizing:border-box}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .full{grid-column:1/3}
+  .total-row{display:flex;justify-content:space-between;align-items:center;padding:12px;margin-top:14px;border-radius:8px;background:linear-gradient(180deg, rgba(0,212,90,0.02), rgba(0,0,0,0.03));border:1px solid rgba(0,212,90,0.03)}
+  .total-row b{color:var(--neon);font-size:18px}
+  .btn{width:100%;padding:12px;border-radius:10px;border:none;cursor:pointer;font-weight:900;background:linear-gradient(90deg,var(--neon),#7bf0a0);color:#001;box-shadow:0 6px 22px rgba(0,212,90,0.12);font-size:16px}
+  .btn.secondary{background:transparent;color:var(--neon);border:1px solid rgba(0,212,90,0.12);box-shadow:none}
+  .links{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+  .linkbtn{padding:8px 12px;border-radius:8px;background:transparent;border:1px solid rgba(0,212,90,0.06);color:var(--neon);text-decoration:none;font-weight:700}
+  .small{font-size:13px;color:rgba(207,238,224,0.65)}
+  footer{margin-top:18px;text-align:center;color:rgba(207,238,224,0.45);font-size:13px}
+  @media(max-width:720px){.grid{grid-template-columns:1fr}.full{grid-column:auto}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Instagram Portal</h1>
+      <div class="small" style="margin-top:6px">Powered by Dark Anon</div>
+    </header>
+
+    <div class="card">
+      <p class="lead">Choose an Instagram service, enter quantity and paste your Instagram link. Total updates automatically. Click Make Payment to pay and then Submit Order to send details to Dark Anon.</p>
+
+      <div class="grid">
+        <div>
+          <label for="service">Choose Service</label>
+          <select id="service" aria-label="Choose Instagram service"></select>
+        </div>
+
+        <div>
+          <label for="quantity">Quantity</label>
+          <input id="quantity" type="number" min="1" value="1" aria-label="Quantity">
+        </div>
+
+        <div class="full">
+          <label for="iglink">Instagram Post / Account Link</label>
+          <input id="iglink" type="text" placeholder="https://www.instagram.com/..." aria-label="Instagram link">
+        </div>
+
+        <div class="full">
+          <div class="total-row">
+            <div class="small">Total charge (KSh)</div>
+            <div><b id="total">KSh 0.00</b></div>
+          </div>
+        </div>
+
+        <div class="full" style="margin-top:8px">
+          <button class="btn" id="payBtn">💳 Make Payment</button>
+          <button class="btn secondary" id="submitBtn" style="margin-top:10px">📩 Submit Order (Send to WhatsApp)</button>
+        </div>
+
+        <div class="full small" style="margin-top:8px">
+          <strong>Note:</strong> After paying via the STK prompt, return and press <em>Submit Order</em> to send your order details (service, quantity, link and payment note) to Dark Anon for approval.
+        </div>
+
+        <div class="full links">
+          <a class="linkbtn" href="index.html">⬅ Back to Homepage</a>
+          <a class="linkbtn" href="https://chat.whatsapp.com/CjoDXOsAQVc9dRytsvPNEA?mode=ems_copy_t" target="_blank">📱 Join Our WhatsApp Group</a>
+          <a class="linkbtn" href="https://whatsapp.com/channel/0029Vb1aC844o7qUgewgYS0P" target="_blank">📢 Follow Our Channel</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>© 2025 Dark Anon | All Rights Reserved</footer>
+  </div>
+
+<script>
+/* ========== CONFIG ========== */
+const PAY_LINK = 'https://paystack.shop/pay/h16cycgtd9';
+const WA_NUMBER = '254728626642'; // no plus, for wa.me
+
+/* ========== SERVICES (names + rates internal) ========== */
+const SERVICES = [
+  {name:"Instagram BEST services", rate:0.05},
+  {name:"Instagram views / video / tv / reel", rate:0.025},
+  {name:"Instagram Auto reel views", rate:0.025},
+  {name:"Instagram repost", rate:0.25},
+  {name:"Instagram post views (photo)", rate:0.015},
+  {name:"Instagram AUTO POST VIEWS", rate:0.015},
+  {name:"Instagram song trending", rate:4.00},
+  {name:"Instagram Followers (best speed / superfast)", rate:0.75},
+  {name:"Instagram Followers (best speed)", rate:0.5},
+  {name:"Instagram Followers (non drop)", rate:1.5},
+  {name:"Instagram ALL flag Types WORKING", rate:0.5},
+  {name:"Instagram REFILL", rate:0.52},
+  {name:"Instagram NO REFILL", rate:0.4},
+  {name:"Instagram CHEAPEST", rate:0.4},
+  {name:"Instagram NON drop likes", rate:0.175},
+  {name:"Instagram Realistic likes", rate:0.3},
+  {name:"Instagram Likes (100% real)", rate:0.3},
+  {name:"Instagram Likes (best speed)", rate:0.25},
+  {name:"Instagram Likes (cheapest)", rate:0.15},
+  {name:"Instagram Non drop likes (alt)", rate:0.2},
+  {name:"Instagram Realistic likes (alt)", rate:0.3},
+  {name:"Instagram Auto likes", rate:0.3},
+  {name:"Instagram Likes (cheap + very slow)", rate:0.10},
+  {name:"Instagram shares", rate:0.01},
+  {name:"Instagram AUTO SHARES", rate:0.01},
+  {name:"Instagram saves", rate:0.022},
+  {name:"Instagram AUTO SAVES", rate:0.022},
+  {name:"Instagram highlights", rate:0.7},
+  {name:"Instagram Impression + Reach", rate:0.03},
+  {name:"Instagram AUTO Reach + Impression", rate:0.03},
+  {name:"Instagram Comments package (100% real)", rate:0.5},
+  {name:"Instagram Random comments", rate:0.4},
+  {name:"Instagram Custom comments", rate:1.0},
+  {name:"Instagram Emoji comments", rate:1.5},
+  {name:"Instagram Comments - powered by AI", rate:1.0},
+  {name:"Instagram Comments (packages) - fixed", rate:499.0},
+  {name:"Instagram Comments - Always Working", rate:6.0},
+  {name:"Instagram Comments (100% real accounts)", rate:18.0},
+  {name:"Instagram Comments split - old posts", rate:3.0},
+  {name:"Instagram Comments from verified (fixed)", rate:100.0},
+  {name:"Instagram Comments real influencers / exclusive", rate:0.8},
+  {name:"Instagram Comments by topics", rate:0.0},
+  {name:"Instagram Power comments", rate:0.2},
+  {name:"Instagram Comments - country targeted", rate:18.0},
+  {name:"Instagram Story views", rate:0.05},
+  {name:"Instagram Story poll voting", rate:0.66},
+  {name:"Instagram Story views comments", rate:15.0},
+  {name:"Instagram Story shares | clicks | discover", rate:0.21},
+  {name:"Instagram Story reply", rate:24.0},
+  {name:"Instagram Story swipe up", rate:0.0},
+  {name:"Instagram Story mentions | real influencers", rate:9.0},
+  {name:"Instagram Mentions", rate:1.0},
+  {name:"Instagram Live video views", rate:0.3},
+  {name:"Instagram Live video likes | views", rate:1.0},
+  {name:"Instagram Female services", rate:2.0},
+  {name:"Instagram Engagement packages", rate:4.0},
+  {name:"Instagram Channel members", rate:0.30},
+  {name:"Instagram Channel members - new", rate:0.4},
+  {name:"Instagram Channel member", rate:0.28},
+  {name:"Instagram AI Growth packages", rate:14.0},
+  {name:"Instagram 50K - 1M followers packages", rate:3.2},
+  {name:"Instagram Influencer services", rate:0.006},
+  {name:"Instagram Direct message service - DM", rate:0.90},
+  {name:"Instagram MASS DM + PUSH NOTIFICATIONS", rate:0.5},
+  {name:"Instagram Direct message service (alt)", rate:0.90},
+  {name:"Instagram Data scraper", rate:0.16},
+  {name:"Instagram NFT services", rate:46.0},
+  {name:"Instagram Blue tick verification service", rate:10000.0}
+];
+
+/* populate dropdown (names only) */
+const svcSel = document.getElementById('service');
+SERVICES.forEach((s, i) => {
+  const opt = document.createElement('option');
+  opt.value = i; // store index to find rate later
+  opt.textContent = s.name;
+  svcSel.appendChild(opt);
+});
+
+/* helpers for accurate multiply using integer cents */
+function computeTotal(rate, qty){
+  // Represent rate in cents (two decimals)
+  const unitCents = Math.round(Number(rate) * 100); // 0.025 -> 2.5 -> rounds to 3 cents
+  const totalCents = unitCents * qty;
+  return (totalCents / 100);
+}
+
+const qtyEl = document.getElementById('quantity');
+const totalEl = document.getElementById('total');
+const iglinkEl = document.getElementById('iglink');
+const payBtn = document.getElementById('payBtn');
+const submitBtn = document.getElementById('submitBtn');
+
+function updateTotal(){
+  const idx = parseInt(svcSel.value);
+  const qty = Math.max(0, parseInt(qtyEl.value) || 0);
+  if (isNaN(idx) || idx < 0 || qty <= 0){
+    totalEl.innerText = 'KSh 0.00';
+    return 0;
+  }
+  const rate = Number(SERVICES[idx].rate);
+  const total = computeTotal(rate, qty);
+  totalEl.innerText = 'KSh ' + Number(total).toFixed(2);
+  return Number(total).toFixed(2);
+}
+
+/* auto-update when service or quantity changes */
+svcSel.addEventListener('change', updateTotal);
+qtyEl.addEventListener('input', updateTotal);
+
+/* Make Payment: open pay link directly (no popup text) */
+payBtn.addEventListener('click', () => {
+  const idx = parseInt(svcSel.value);
+  const qty = Math.max(0, parseInt(qtyEl.value) || 0);
+  const iglink = (iglinkEl.value || '').trim();
+  if (isNaN(idx) || idx < 0 || qty <= 0 || !iglink){
+    alert('Please select a service, enter quantity and paste your Instagram link before making payment.');
+    return;
+  }
+  // Directly open Paystack shop payment link in new tab
+  window.open(PAY_LINK, '_blank');
+});
+
+/* Submit Order: open WhatsApp with pre-filled message */
+submitBtn.addEventListener('click', () => {
+  const idx = parseInt(svcSel.value);
+  const qty = Math.max(0, parseInt(qtyEl.value) || 0);
+  const iglink = (iglinkEl.value || '').trim();
+  if (isNaN(idx) || idx < 0 || qty <= 0 || !iglink){
+    alert('Please select a service, enter quantity and paste your Instagram link before submitting order.');
+    return;
+  }
+  const serviceName = SERVICES[idx].name;
+  const total = updateTotal(); // ensures we have latest total
+  // Ask for optional STK/M-Pesa reference (user can leave empty)
+  const payRef = prompt('Enter STK / M-Pesa reference (paste code from your phone) if available. Leave blank to just send the order note:','');
+  const paymentNote = payRef ? `${payRef} (STK Prompt)` : 'Paid using STK Prompt ✅';
+  const lines = [
+    '📩 New Instagram Order — Instagram Portal',
+    '',
+    `Service: ${serviceName}`,
+    `Quantity: ${qty}`,
+    `Charge: KSh ${Number(total).toFixed(2)}`,
+    `Instagram Link: ${iglink}`,
+    `Payment Reference: ${paymentNote}`,
+    '',
+    '— Sent to Dark Anon for approval'
+  ];
+  const msg = encodeURIComponent(lines.join('\n'));
+  const waUrl = `https://wa.me/${WA_NUMBER}?text=${msg}`;
+  window.open(waUrl, '_blank');
+});
+</script>
+</body>
+</html>
